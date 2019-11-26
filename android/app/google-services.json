@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "292185357826",
+    "firebase_url": "https://opini-ad71d.firebaseio.com",
+    "project_id": "opini-ad71d",
+    "storage_bucket": "opini-ad71d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292185357826:android:50fa32b93c91bf34",
+        "android_client_info": {
+          "package_name": "com.opini"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292185357826-69nffuefd92ooav8iboqlm8figc0as7e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArekEJgq_rj33b4RIV2mEY2ZahpYPEkvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292185357826-69nffuefd92ooav8iboqlm8figc0as7e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
