@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { addReview } from '../actions/ReviewActions';
 import { Container, Header, Content, Item, Label, Input, Form, Button, Text, Body, Title, Icon, Right, Switch, ListItem, Left } from "native-base";
 import { ImagePicker } from "react-native-image-picker";
-import { RNFetchBlob }  from 'rn-fetch-blob';
+import { RNFetchBlob } from 'rn-fetch-blob';
 import { uuid } from 'uuid';
 import { Remote } from '../services/Remote';
 import { Loading } from "./Loading";
@@ -29,7 +29,18 @@ class ReviewForm extends Component {
             loading: false
         }
     }
-    
+
+    postSave() {
+        this.setState({
+            title: '',
+            description: '',
+            imageUri: '',
+            remote: false,
+            loading: false
+        });
+        this.props.navigation.navigate('ReviewList');
+    }
+
     localSave() {
         const { title, description } = this.state;
         NativeModules.DeviceName.getDeviceName().then(deviceName => {
@@ -80,6 +91,7 @@ class ReviewForm extends Component {
         }
     }
 
+
     save() {
         if (this.state.remote) {
             this.remoteSave();
@@ -108,27 +120,14 @@ class ReviewForm extends Component {
         }
     }
 
-    postSave() {
-        this.setState({
-            title: '',
-            description: '',
-            imageUri: '',
-            remote: false,
-            loading: false
-        });
-        this.props.navigation.navigate('ReviewList');
-    }
-
     render() {
         return (
             <Container>
                 <Header>
                     <Body><Title>Nova Opinião</Title></Body>
                     <Right>
-                        <Button transparent onPress={() => {
-                            this.addImage();
-                        }}>
-                            <Icon name="camera" />
+                        <Button transparent onPress={() => {this.addImage();}}>
+                            <Icon name="Ionicons" /> //verificar
                         </Button>
                     </Right>
                 </Header>
@@ -145,8 +144,7 @@ class ReviewForm extends Component {
                             <Label>Descrição</Label>
                             <Input
                                 onChangeText={
-                                    (description) => this.setState({ description })
-                                }
+                                    (description) => this.setState({ description })}
                                 value={this.state.description}
                             />
                         </Item>
@@ -160,9 +158,7 @@ class ReviewForm extends Component {
                         </ListItem>
                     </Form>
                     {this.drawImage()}
-                    <Button block style={styles.saveButton} onPress={() => {
-                        this.save()
-                    }}>
+                    <Button block style={styles.saveButton} onPress={() => { this.save()}}>
                         <Text>Salvar</Text>
                     </Button>
                 </Content>
@@ -172,6 +168,7 @@ class ReviewForm extends Component {
         );
     }
 }
+
 const styles = StyleSheet.create({
     saveButton: {
         marginTop: 30
