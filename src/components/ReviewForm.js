@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import { StyleSheet, Image, Platform, NativeModules } from 'react-native';
-import { Container, Header, Content, Item, Label, Root, Input, Form, Button, Text, Body, Title, Toast, Icon } from "native-base";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addReview } from '../actions/ReviewActions'
+import { addReview } from '../actions/ReviewActions';
 import { Container, Header, Content, Item, Label, Input, Form, Button, Text, Body, Title, Icon, Right, Switch, ListItem, Left } from "native-base";
-import ImagePicker from "react-native-image-picker";
-import { StyleSheet, Image } from 'react-native';
-import RNFetchBlob from 'rn-fetch-blob';
-import uuid from 'uuid';
-import Remote from '../services/Remote'
-import Loading from "./Loading";
+import { ImagePicker } from "react-native-image-picker";
+import { RNFetchBlob }  from 'rn-fetch-blob';
+import { uuid } from 'uuid';
+import { Remote } from '../services/Remote';
+import { Loading } from "./Loading";
 
 
 class ReviewForm extends Component {
@@ -168,7 +166,7 @@ class ReviewForm extends Component {
                         <Text>Salvar</Text>
                     </Button>
                 </Content>
-                <Loading show={this.state.loading} /> //nova linha
+                <Loading show={this.state.loading} />
             </Container>
 
         );

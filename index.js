@@ -7,7 +7,8 @@ import { AppRegistry, AsyncStorage } from 'react-native';
 import ReviewForm from './src/components/ReviewForm';
 import { name as appName } from './app.json';
 import { Root } from 'native-base';
-import { createBottomTabNavigator, createAppContainer } from "react-navigation";
+import { createAppContainer } from "react-navigation";
+import { createBottomTabNavigator } from "react-navigation-tabs";
 import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 import { PersistGate } from 'redux-persist/lib/integration/react';
@@ -16,10 +17,18 @@ import MessageService from './src/services/MessageService';
 
 
 const TabNavigator = createBottomTabNavigator({
-    ReviewForm
+    ReviewForm, ReviewList, RemoteList
 });
 
+const AppContainer = createAppContainer(TabNavigator);
+
+const persistConfig = {
+    key: 'reviews',
+    storage: AsyncStorage
+};
+
 const rootReducer = combineReducers({ reviews: reviewsReducer });
+
 const persistentReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(
     persistentReducer,
@@ -27,13 +36,6 @@ const store = createStore(
 );
 
 const persistor = persistStore(store);
-
-const persistConfig = {
-    key: 'reviews',
-    storage: AsyncStorage
-};
-
-const AppContainer = createAppContainer(TabNavigator);
 
 if (Platform.OS === 'android') {
     MessageService.initToken().then(() => {
@@ -54,7 +56,3 @@ const wrappedView = () => {
 }
 
 AppRegistry.registerComponent(appName, () => wrappedView);
-
-const TabNavigator = createBottomTabNavigator({
-    ReviewForm, ReviewList, RemoteList
-});
